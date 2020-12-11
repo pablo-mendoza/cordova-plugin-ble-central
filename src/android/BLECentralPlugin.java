@@ -767,7 +767,9 @@ public class BLECentralPlugin extends CordovaPlugin {
                         new ParcelUuid(uuid)).build();
                 filters.add(filter);
             }
-            ScanSettings settings = new ScanSettings.Builder().build();
+            
+            ScanSettings settings = new ScanSettings.Builder().setScanMode(SCAN_MODE_LOW_LATENCY).build();
+
             bluetoothLeScanner.startScan(filters, settings, leScanCallback);
         } else {
             bluetoothLeScanner.startScan(leScanCallback);
