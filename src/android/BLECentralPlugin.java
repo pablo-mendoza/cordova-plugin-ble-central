@@ -653,7 +653,7 @@ public class BLECentralPlugin extends CordovaPlugin {
 
         try {
             IntentFilter intentFilter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
-            webView.getContext().registerReceiver(this.stateReceiver, intentFilter);
+            webView.getContext().registerReceiver(this.stateReceiver, intentFilter, RECEIVER_NOT_EXPORTED);
         } catch (Exception e) {
             LOG.e(TAG, "Error registering state receiver: " + e.getMessage(), e);
         }
@@ -700,7 +700,7 @@ public class BLECentralPlugin extends CordovaPlugin {
         try {
             IntentFilter intentFilter = new IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION);
             intentFilter.addAction(Intent.ACTION_PROVIDER_CHANGED);
-            webView.getContext().registerReceiver(this.locationStateReceiver, intentFilter);
+            webView.getContext().registerReceiver(this.locationStateReceiver, intentFilter, RECEIVER_NOT_EXPORTED);
         } catch (Exception e) {
             LOG.e(TAG, "Error registering location state receiver: " + e.getMessage(), e);
         }
@@ -837,7 +837,7 @@ public class BLECentralPlugin extends CordovaPlugin {
 
             IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_PAIRING_REQUEST);
             intentFilter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-            webView.getContext().registerReceiver(broadCastReceiver, intentFilter);
+            webView.getContext().registerReceiver(broadCastReceiver, intentFilter, RECEIVER_NOT_EXPORTED);
 
             callbackContext.success("OK");
         } catch (Exception e) {
@@ -1485,7 +1485,7 @@ public class BLECentralPlugin extends CordovaPlugin {
                     }
                 }
             };
-            webView.getContext().registerReceiver(bondStateReceiver, new IntentFilter(ACTION_BOND_STATE_CHANGED));
+            webView.getContext().registerReceiver(bondStateReceiver, new IntentFilter(ACTION_BOND_STATE_CHANGED), RECEIVER_NOT_EXPORTED);
         }
     }
 
